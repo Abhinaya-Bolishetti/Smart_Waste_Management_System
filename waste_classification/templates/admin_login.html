@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | WasteWise AI{% endblock %}
+{% block page_name %}admin-login{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="content-card">
+            <h3 class="mb-3">Admin Login</h3>
+            <p class="text-muted">Manage waste centers, categories, and price per kilogram from the admin dashboard.</p>
+
+            <div class="suggestion-box mb-3">
+                <strong>Default credentials:</strong> username: admin, password: admin
+            </div>
+
+            <form method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-accent">Login as Admin</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

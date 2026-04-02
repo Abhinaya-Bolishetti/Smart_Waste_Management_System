@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Classification Results | WasteWise AI{% endblock %}
+{% block page_name %}results{% endblock %}
+{% block content %}
+<section class="content-card mb-4">
+    <div class="row g-4 align-items-center">
+        <div class="col-md-8">
+            <h3 class="mb-2">Prediction Result</h3>
+            <p class="mb-1">Identified waste category: <strong>{{ category }}</strong></p>
+            <p class="text-muted mb-0">Next step: allow location detection to receive nearby centers and map navigation options.</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+            {% if uploaded_image_url %}
+                <img src="{{ uploaded_image_url }}" alt="Uploaded waste image" class="preview-image">
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% if location_pending %}
+<section class="content-card">
+    <h4 class="mb-3">Detecting Your Location</h4>
+    <div id="geo-status" class="d-flex align-items-center gap-2 text-muted">
+        <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+        <span>Please allow browser location access. We are finding the nearest waste centers for {{ category }}.</span>
+    </div>
+    <p class="mt-3 mb-0 small text-muted">
+        If browser location is blocked, enable it in browser settings and reload this page.
+    </p>
+</section>
+{% else %}
+<section class="mb-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <h4 class="mb-0">Nearby Waste Centers</h4>
+        <a href="{{ url_for('user_upload') }}" class="btn btn-outline-secondary btn-sm">Classify Another Image</a>
+    </div>
+
+    {% if centers %}
+    <div class="row g-3">
+        {% for center in centers %}
+        <div class="col-md-6 col-xl-4">
+            <article class="feature-card h-100">
+                <h5 class="mb-2">{{ center.center_name }}</h5>
+                <p class="mb-1"><strong>Category:</strong> {{ center.category }}</p>
+                <p class="mb-1"><strong>Price per kg:</strong> {{ '%.2f'|format(center.price_per_kg) }}</p>
+                <p class="mb-3"><strong>Distance:</strong> {{ center.distance }} km</p>
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&origin={{ user_lat }},{{ user_lng }}&destination={{ center.latitude }},{{ center.longitude }}&travelmode=driving"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-accent btn-sm"
+                >Open Navigation</a>
+            </article>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if google_maps_api_key %}
+    <div class="content-card mt-4">
+        <h5 class="mb-3">Map View</h5>
+        <div id="center-map" class="map-shell"></div>
+    </div>
+    {% else %}
+    <div class="suggestion-box mt-4">
+        Google Maps API key is not configured. Navigation links are still available for each center.
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div class="content-card">
+        <p class="mb-2">No centers found for this category near your location.</p>
+        <p class="text-muted mb-0">Suggestion: classify another image or ask admin to add centers for category {{ category }}.</p>
+    </div>
+    {% endif %}
+</section>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+{% if not location_pending and centers and google_maps_api_key %}
+<script id="center-points-data" type="application/json">{{ centers | tojson }}</script>
+<script id="user-location-data" type="application/json">{{ {'lat': user_lat, 'lng': user_lng} | tojson }}</script>
+<script>
+    const centerPoints = JSON.parse(document.getElementById("center-points-data").textContent);
+    const userLocation = JSON.parse(document.getElementById("user-location-data").textContent);
+    const userLat = userLocation.lat;
+    const userLng = userLocation.lng;
+
+    function initWasteMap() {
+        const userPos = { lat: userLat, lng: userLng };
+        const map = new google.maps.Map(document.getElementById("center-map"), {
+            zoom: 12,
+            center: userPos,
+            mapTypeControl: false,
+            streetViewControl: false,
+            fullscreenControl: true
+        });
+
+        new google.maps.Marker({
+            position: userPos,
+            map,
+            title: "Your Location"
+        });
+
+        centerPoints.forEach((center) => {
+            const position = { lat: center.latitude, lng: center.longitude };
+            const marker = new google.maps.Marker({
+                position,
+                map,
+                title: center.center_name
+            });
+
+            const info = new google.maps.InfoWindow({
+                content: `<strong>${center.center_name}</strong><br>Category: ${center.category}<br>Distance: ${center.distance} km`
+            });
+
+            marker.addListener("click", () => info.open(map, marker));
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initWasteMap"></script>
+{% endif %}
+{% endblock %}

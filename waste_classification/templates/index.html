@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}WasteWise AI | Smart Recycling Assistant{% endblock %}
+{% block page_name %}home{% endblock %}
+{% block content %}
+<section class="hero-panel mb-4 mb-lg-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="chip">AI + Deep Learning + Maps</span>
+            <h1 class="hero-title mt-3">Classify Waste in Seconds and Find the Best Nearby Recycling Center</h1>
+            <p class="hero-subtitle mt-3">
+                WasteWise AI uses a MobileNetV2 TensorFlow model to identify waste categories from uploaded images,
+                then matches you with nearby centers based on your location and the selected category.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a class="btn btn-accent" href="{{ url_for('user_register') }}">Create User Account</a>
+                <a class="btn btn-outline-light" href="{{ url_for('user_login') }}">User Login</a>
+                <a class="btn btn-outline-light" href="{{ url_for('admin_login') }}">Admin Login</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="glass-panel">
+                <h5 class="mb-3">Project Highlights</h5>
+                <ul class="m-0 ps-3 small">
+                    <li>Deep learning image classification with MobileNetV2</li>
+                    <li>10 waste categories supported</li>
+                    <li>Nearby center search using current location</li>
+                    <li>Google Maps navigation links for each center</li>
+                    <li>Admin panel for center management and pricing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-4 mb-lg-5">
+    <div class="row g-3 g-lg-4">
+        <div class="col-md-6 col-lg-3">
+            <article class="feature-card h-100">
+                <h5>1. Register / Login</h5>
+                <p>Create your user account and sign in to start classifying waste images.</p>
+            </article>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <article class="feature-card h-100">
+                <h5>2. Upload Waste Image</h5>
+                <p>Upload a clear photo. The model predicts one of the supported categories.</p>
+            </article>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <article class="feature-card h-100">
+                <h5>3. Detect Location</h5>
+                <p>Allow browser location access so we can calculate nearest matching centers.</p>
+            </article>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <article class="feature-card h-100">
+                <h5>4. Navigate via Maps</h5>
+                <p>Open Google Maps route navigation directly from the center result cards.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="content-card mb-4 mb-lg-5">
+    <h4 class="mb-3">Supported Waste Categories</h4>
+    <div class="d-flex flex-wrap gap-2">
+        {% for category in categories %}
+            <span class="badge category-badge">{{ category }}</span>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="content-card">
+    <h4 class="mb-3">User Suggestions for Better Results</h4>
+    <ul class="mb-0 ps-3">
+        <li>Use images with a plain background and good lighting.</li>
+        <li>Capture one primary item per image for higher classification accuracy.</li>
+        <li>Enable location permission to receive nearest center recommendations.</li>
+        <li>If no center appears, try another image or contact admin to add new centers.</li>
+    </ul>
+</section>
+{% endblock %}
