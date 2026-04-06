@@ -108,25 +108,60 @@ The model is trained to classify waste into categories such as:
 ## ⚙ Installation and Setup
 
 ### 1. Clone the repository
-```bash
-git clone https://github.com/your-username/Smart_Waste_Management_System.git
 
-2. Navigate to the project folder
+```bash
+git clone https://github.com/Abhinaya-Bolishetti/Smart_Waste_Management_System.git
+````
+
+### 2. Navigate to the project folder
+
+```bash
 cd Smart_Waste_Management_System
-3. Create virtual environment (optional but recommended)
+```
+
+### 3. Create virtual environment (optional but recommended)
+
+```bash
 python -m venv venv
-4. Activate virtual environment
-On Windows
+```
+
+### 4. Activate virtual environment
+
+#### On Windows
+
+```bash
 venv\Scripts\activate
-On Mac/Linux
+```
+
+#### On Mac/Linux
+
+```bash
 source venv/bin/activate
-5. Install dependencies
+```
+
+### 5. Install dependencies
+
+```bash
 pip install -r requirements.txt
-6. Run the Flask application
+```
+
+### 6. Run the Flask application
+
+```bash
 python app.py
-7. Open in browser
+```
+
+### 7. Open in browser
+
+```bash
 http://127.0.0.1:5000/
-📁 Project Structure
+```
+
+---
+
+## 📁 Project Structure
+
+```bash
 Smart_Waste_Management_System/
 │── static/
 │   ├── css/
@@ -148,31 +183,80 @@ Smart_Waste_Management_System/
 │── database.db
 │── requirements.txt
 │── README.md
-🧪 Algorithms Used
-Image Classification Algorithm (CNN / MobileNet)
-Waste Centre Filtering Algorithm
-Distance Calculation Algorithm
-Admin CRUD Operations
-📌 Non-Functional Requirements
-Performance: Fast waste image classification and quick response
-Scalability: Supports future growth in users and data
-Availability: Accessible whenever users need it
-Compatibility: Works on modern browsers and devices
-Usability: Simple and user-friendly interface
-🎯 Advantages
-Helps users identify waste correctly
-Promotes proper waste disposal
-Encourages recycling habits
-Reduces manual effort in finding recycling centres
-Supports environmental sustainability
-📸 Expected Output
-User uploads waste image
-System predicts waste type
-Nearby recycling centres are displayed
-Navigation support is provided through maps
-🔮 Future Enhancements
-Real-time recycling centre updates
-Reward points for eco-friendly disposal
-More accurate waste classification model
-Multi-language support
-Mobile app version
+```
+
+---
+
+## 🧪 Algorithms Used
+
+* Image Classification Algorithm (**CNN / MobileNet**)
+* Waste Centre Filtering Algorithm
+* Distance Calculation Algorithm
+* Admin CRUD Operations
+
+---
+
+## 📌 Non-Functional Requirements
+
+* **Performance:** Fast waste image classification and quick response
+* **Scalability:** Supports future growth in users and data
+* **Availability:** Accessible whenever users need it
+* **Compatibility:** Works on modern browsers and devices
+* **Usability:** Simple and user-friendly interface
+
+---
+
+## 🎯 Advantages
+
+* Helps users identify waste correctly
+* Promotes proper waste disposal
+* Encourages recycling habits
+* Reduces manual effort in finding recycling centres
+* Supports environmental sustainability
+
+---
+
+## 📸 Expected Output
+
+* User uploads waste image
+* System predicts waste type
+* Nearby recycling centres are displayed
+* Navigation support is provided through maps
+
+---
+
+## 🔮 Future Enhancements
+
+* Real-time recycling centre updates
+* Reward points for eco-friendly disposal
+* More accurate waste classification model
+* Multi-language support
+* Mobile app version
+
+---
+
+
+
+## 📚 References
+
+1. Olade, D. B., *“Smart Waste Management: A Paradigm Shift Enabled by Artificial Intelligence,”* ScienceDirect, 2024.
+2. Fang, B., *“Artificial Intelligence for Waste Management in Smart Cities,”* Journal of Environmental Informatics, 2023.
+3. Kunwar, S., *“MWaste: A Deep Learning Approach to Manage Household Waste,”* arXiv, 2023.
+
+---
+
+## 🌱 Conclusion
+
+The **Smart Waste Management System** provides an intelligent and user-friendly solution for waste identification and disposal guidance.
+By combining **Deep Learning**, **Flask**, and **location-based services**, the system helps users classify waste and find nearby recycling centres efficiently.
+
+This project promotes proper waste segregation, supports recycling practices, and contributes to **environmental sustainability**.
+
+---
+
+## ⭐ If you like this project
+
+Give it a **star** on GitHub ⭐
+
+````
+
