@@ -236,15 +236,6 @@ Smart_Waste_Management_System/
 ---
 
 
-
-## 📚 References
-
-1. Olade, D. B., *“Smart Waste Management: A Paradigm Shift Enabled by Artificial Intelligence,”* ScienceDirect, 2024.
-2. Fang, B., *“Artificial Intelligence for Waste Management in Smart Cities,”* Journal of Environmental Informatics, 2023.
-3. Kunwar, S., *“MWaste: A Deep Learning Approach to Manage Household Waste,”* arXiv, 2023.
-
----
-
 ## 🌱 Conclusion
 
 The **Smart Waste Management System** provides an intelligent and user-friendly solution for waste identification and disposal guidance.
@@ -257,6 +248,3 @@ This project promotes proper waste segregation, supports recycling practices, an
 ## ⭐ If you like this project
 
 Give it a **star** on GitHub ⭐
-
-````
-
